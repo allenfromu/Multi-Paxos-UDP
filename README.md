@@ -1,6 +1,6 @@
 # Multi-Paxos implementation
 ##Overview
-Multi-Paxos is one of the use cases of Paxos. I had previously implemented and published the Single-Decree-Paxos implementation in <a href="https://github.com/allenfromu/Single-Decree-Paxos" target="_blank">this Repo</a> before I implemented multi-paxos. It is important for users to understand the Single-Decree-Paxos before trying to understand multi-paxos. This is project is doneThis project was built initially as one of the distributed system benchmarks to help with the DS2 lang research project in the <a href="http://formalverification.cs.utah.edu" target="_blank">Gauss Group</a> at the <a href="http://www.cs.utah.edu" target="_blank">SOC University of Utah.</a> The code is less and simpler thanks to an extremely advanced language Scala and the Akka Actor package, users can definely run this project to help understand how paxos and multi-paxos works.
+Multi-Paxos is one of the use cases of Paxos. I had previously implemented and published the Single-Decree-Paxos in <a href="https://github.com/allenfromu/Single-Decree-Paxos" target="_blank">this Repo</a> before I implemented multi-paxos. It is important for users to understand the Single-Decree-Paxos before trying to understand multi-paxos. This project was built initially as one of the distributed system benchmarks to help with the DS2 lang research project in the <a href="http://formalverification.cs.utah.edu" target="_blank">Gauss Group</a> at the <a href="http://www.cs.utah.edu" target="_blank">SOC University of Utah.</a> The code is less and simpler thanks to an extremely advanced language Scala and the Akka Actor package, users can definely run this project to help understand how paxos and multi-paxos works.
 
 ##Run the project using <a href="http://www.scala-sbt.org" target="_blank">SBT</a> (Simple Build Tool)
  * Install SBT on your computer.
@@ -10,7 +10,7 @@ Multi-Paxos is one of the use cases of Paxos. I had previously implemented and p
    ```
   * For more instructions about installing SBT on any type of OS, visit <a href="http://www.scala-sbt.org/release/tutorial/Setup.html" target="_blank">this link</a>
  * Clone the project from repo: https://github.com/allenfromu/Single-Decree-Paxos.git
- * Go to the Single-Decree-Paxos directory from terminal and then run command: 
+ * Go to the Multi-Paxos directory from terminal and then run command: 
  ``` 
  
    -> sbt run
@@ -25,7 +25,7 @@ value:hello world
 node:1
 ->
 ```
-
+By doing above, you ask node 1 to propose value 'hello world' from node 1.
 ##Import the project to eclipse
  * Download <a href="http://www.eclipse.org" target="_blank">Eclipse</a> into your computer if you don't have it installed.
  * Add sbteclipse to your plugin definition file (or create one if doesn't exist). You can use either:
@@ -36,7 +36,7 @@ node:1
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
 
 ```
- * In the Single-Decree-Paoxs directory, run command:
+ * In the Multi-Paoxs directory, run command:
 
 ```
 ->sbt eclipse
@@ -49,7 +49,8 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
  
 ##Supports and further improvement.
 This is project can't be done without the support of my supervisors and advisors, <a href="http://www.cs.utah.edu/~ganesh/" target="_blank">Ganesh Gopalakrishnan</a> and Mohammed S. Al-Mahfoudh. 
-<br>I am still working on it to make this project bettter, and I like to hear any advice to help make it better. Your advice is invaluable for me, please email me at allenzhaofromu@gmail.com if you think any aspect of the project can be made better.
+<br>. Thanks to the great advice from Dr. <a href="http://rstutsman.github.io">Ryan Stutsman </a>
+I am still working on it to make this project bettter, and I like to hear any advice to help make it better. Your advice is invaluable for me, please email me at allenzhaofromu@gmail.com if you think any aspect of the project can be made better.
 
 
 
