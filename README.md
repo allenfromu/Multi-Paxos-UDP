@@ -49,8 +49,8 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
  
 ##Supports and further improvement.
 This is project can't be done without the support of my supervisors and advisors, <a href="http://www.cs.utah.edu/~ganesh/" target="_blank">Ganesh Gopalakrishnan</a> and Mohammed S. Al-Mahfoudh. 
-<br>. Thanks to the great advice from Dr. <a href="http://rstutsman.github.io">Ryan Stutsman </a>
-I am still working on it to make this project bettter, and I like to hear any advice to help make it better. Your advice is invaluable for me, please email me at allenzhaofromu@gmail.com if you think any aspect of the project can be made better.
+Also, Thanks to the great advice from Dr. <a href="http://rstutsman.github.io">Ryan Stutsman </a>
+<br>I am still working on it to make this project bettter, and I like to hear any advice to help make it better. Your advice is invaluable for me, please email me at allenzhaofromu@gmail.com if you think any aspect of the project can be made better.
 
 
 
