@@ -9,7 +9,7 @@ Multi-Paxos is one of the use cases of Paxos. I had previously implemented and p
      ->brew install sbt
    ```
   * For more instructions about installing SBT on any type of OS, visit <a href="http://www.scala-sbt.org/release/tutorial/Setup.html" target="_blank">this link</a>
- * Clone the project from repo: https://github.com/allenfromu/Single-Decree-Paxos.git
+ * Clone the project from repo: https://github.com/allenfromu/Multi-Paxos.git
  * Go to the Multi-Paxos directory from terminal and then run command: 
  ``` 
  
@@ -44,7 +44,7 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
  * From the eclipse IDE, import the project to workspace, File->Import->Existing Projects into Workspace.
  * Note you might need to add Akka package into eclipse, to do so:
   * Download the latest version of <a href="http://akka.io/downloads/" target="_blank"> Akka Actor</a>
-  * In eclipse, right click the Single-Decree-Paxos project,go Build Paths -> Add External Archives ...
+  * In eclipse, right click the Multi-Paxos project,go Build Paths -> Add External Archives ...
  * Note that if you want to run it from eclipse, main function is in **src/main/scala/Impl/Main.scala**
  
 ##Supports and further improvement.
