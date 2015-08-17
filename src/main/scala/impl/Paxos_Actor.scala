@@ -258,7 +258,8 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
     case Print_logs() =>{
       println()
       for(i <-1 until this.leading_instance.toInt){
-        println("instance:"+i+", value:"+this.logs(i))
+        if(logs.contains(i))
+          println("instance:"+i+", value:"+this.logs(i))
       }
       println("->")
     }
