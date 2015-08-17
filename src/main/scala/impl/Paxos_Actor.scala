@@ -180,19 +180,22 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
 
           logger.info("learning a value:["+acc_v+"] from node "+nid)
           var key = acc_pid.toString()+"_"+ins           
-          if(!this.learned_proposals.contains(key)){
-             this.learned_proposals+=(key->(acc_v,acc_pid,1))
-          }else{
-            var temp1 = this.learned_proposals(key)
-            var temp2 = temp1._3+1
-            this.learned_proposals+=(key->(acc_v,acc_pid,temp2))
-            if(temp2 >= this.quorum_size){
-              this.proposing_value = null
-              this.proposing_id = null
-              this.next_instance+=1
-              this.learned_proposals = Map()
-              print("\nLearned value:"+acc_v+",instance:"+this.next_instance+"\n->")
-           }
+          println("accept key:"+key)
+          if(ins >= this.next_instance){
+            if(!this.learned_proposals.contains(key)){
+               this.learned_proposals+=(key->(acc_v,acc_pid,1))
+            }else{
+              var temp1 = this.learned_proposals(key)
+              var temp2 = temp1._3+1
+              this.learned_proposals+=(key->(acc_v,acc_pid,temp2))
+              if(temp2 >= this.quorum_size){
+                this.proposing_value = null
+                this.proposing_id = null
+                this.next_instance+=1
+                this.learned_proposals = Map()
+                print("\nLearned value:"+acc_v+",instance:"+this.next_instance+"\n->")
+             }
+            }
           }   
           
         }      
@@ -254,8 +257,8 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
     
     case Print_logs() =>{
       println()
-      for((k,v)<-logs){
-        println("instance:"+k+", value:"+v._1)
+      for(i <-1 until this.leading_instance.toInt){
+        println("instance:"+i+", value:"+this.logs(i))
       }
       println("->")
     }
