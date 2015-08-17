@@ -144,14 +144,20 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
         }
         
         case receive_nack(ins,higher_pid) => {
-          logger.info("Receive nack{instance:"+ins+",higher_pid:"+higher_pid.toString()+"} from:"+remote.toString())          
-          if(ins == this.next_instance && this.proposing_id != null && higher_pid.isGreater(this.proposing_id)){
-            this.proposing_id = new ProposalID(higher_pid.getNumber+1,this.id)
-            for((k,v)<-pm){
-              socket ! Udp.Send(Util.toByteString(receive_prepare(this.next_instance,this.proposing_id)), v)
-              logger.info("Send prepare{instance:["+this.next_instance+"], proposal_id:"+this.proposing_id.toString()+ "} to node:"+k)
-            }
-          }           
+          
+          logger.info("Receive nack{instance:"+ins+",higher_pid:"+higher_pid.toString()+"} from:"+remote.toString())     
+          if(this.leader == this.id){        
+            if(ins == this.next_instance && this.proposing_id != null && higher_pid.isGreater(this.proposing_id)){
+              this.proposing_id = new ProposalID(higher_pid.getNumber+1,this.id)
+              for((k,v)<-pm){
+                socket ! Udp.Send(Util.toByteString(receive_prepare(this.next_instance,this.proposing_id)), v)
+                logger.info("Send prepare{instance:["+this.next_instance+"], proposal_id:"+this.proposing_id.toString()+ "} to node:"+k)
+              }
+            } 
+          }else{
+           self ! propose(this.proposing_value, this.leader)
+          }
+                    
         }
         
         case accept(ins, acc_v, acc_pid) =>{
@@ -187,7 +193,8 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
               this.learned_proposals = Map()
               print("\nLearned value:"+acc_v+",instance:"+this.next_instance+"\n->")
            }
-          }                      
+          }   
+          
         }      
        
        
@@ -284,6 +291,7 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
   }
   
   def check_and_update_instance(){
+    
     if(this.next_instance < this.leading_instance){
       socket ! Udp.Send(Util.toByteString(instance_request(this.next_instance)),pm(this.leader))
     }
@@ -291,11 +299,16 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
   }
   
   def check_and_update_proposal_array(){
+ 
     if(this.proposing_value == null && this.proposal_values.size != 0){
+
       var v = this.proposal_values(0)
-      socket ! Udp.Send(Util.toByteString(propose_cmd(v)),pm(this.id))
+      println("sending "+v)
+      //socket ! Udp.Send(Util.toByteString(propose_cmd(v)),pm(this.id))
+      this.self ! propose(v, this.leader)
       this.proposal_values = this.proposal_values.drop(1)
-    }      
+    }   
+    
   }
   
 }
