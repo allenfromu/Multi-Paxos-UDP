@@ -179,7 +179,7 @@ class Paxos_Actor(val pm:Map[Int,InetSocketAddress], val id:Int) extends Actor{
         case accepted(ins, nid, acc_v, acc_pid) =>{
 
           logger.info("learning a value:["+acc_v+"] from node "+nid)
-          var key = acc_pid.toString()           
+          var key = acc_pid.toString()+"_"+ins           
           if(!this.learned_proposals.contains(key)){
              this.learned_proposals+=(key->(acc_v,acc_pid,1))
           }else{
