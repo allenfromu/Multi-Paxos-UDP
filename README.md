@@ -47,6 +47,10 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0")
   * In eclipse, right click the Multi-Paxos project,go Build Paths -> Add External Archives ...
  * Note that if you want to run it from eclipse, main function is in **src/main/scala/Impl/Main.scala**
  
+##Commands to manipulate a paxos
+ * run 'propose' to propose a value.
+ * run 'PL' to look up the log table.
+ 
 ##Supports and further improvement.
 This is project can't be done without the support of my supervisors and advisors, <a href="http://www.cs.utah.edu/~ganesh/" target="_blank">Ganesh Gopalakrishnan</a> and <a href="https://sites.google.com/site/mohammedmahfoudh/home" target="_blank">Mohammed S. Al-Mahfoudh</a>. 
 Also, Thanks to the great advice from Dr. <a href="http://rstutsman.github.io">Ryan Stutsman </a>.
